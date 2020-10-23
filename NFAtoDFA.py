@@ -18,7 +18,10 @@ stop = ','
 while(stop != '.'):
     stop = input('Enter the final state(s)(\'.\' to end): ')
     if(stop != '.' and stop not in F):
-        F.append(stop)
+        if stop in Q:
+            F.append(stop)
+        else:
+            print(f'{stop} is not in the list of states..')
 print('List of final state(s)(F): ', end='')
 print(F)
 print()
@@ -37,7 +40,13 @@ print()
 
 
 #Taking the value of beginning state(q0):
-q0 = input('Enter the beginning state(q0): ')
+q0 = ''
+while (q0 == ''):
+    q = input('Enter the beginning state(q0): ')
+    if q in Q:
+        q0 = q
+    else:
+        print(f'{q} is not in the list of states..')
 print('Beginning state(q0): ', end='')
 print(q0)
 print()
@@ -59,7 +68,10 @@ for i in Q:
         while(stop != '.'):
             stop = input(f"delta({i},{j}) = ")
             if(stop != '.' and stop not in table[i][j]):
-                table[i][j].append(stop)
+                if stop in Q:
+                    table[i][j].append(stop)
+                else:
+                    print(f'{stop} is not in the list of states..')
         print()
 
 #print(table)
